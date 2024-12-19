@@ -1,13 +1,9 @@
 require("dotenv").config();
 const express = require("express");
 const bodyParser = require("body-parser");
-const mongoose = require("mongoose");
 const session = require("express-session");
-const passport = require("passport");
-const passportLocalMongoose = require("passport-local-mongoose");
 const path = require("path");
-const findOrCreate = require("mongoose-findorcreate");
-
+const pg = require("pg");
 const app = express();
 
 // Middleware
@@ -28,58 +24,79 @@ app.use(
   })
 );
 
-// Passport initialization
-app.use(passport.initialize());
-app.use(passport.session());
-
-mongoose.connect("mongodb://localhost:27017/studnetawslogin", {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
+const db = new pg.Client({
+  user: process.env.DB_USER, // User from .env
+  host: process.env.DB_HOST, // Host from .env
+  database: process.env.DB_NAME, // Database name from .env
+  password: process.env.DB_PASSWORD, // Password from .env
+  port: process.env.DB_PORT, // Port from .env
 });
-mongoose.connection.once("open", () => {
-  console.log("Connected to MongoDB");
+db.connect()
+  .then(() => console.log("Connected to the database!"))
+  .catch((err) => console.error("Database connection error:", err.stack));
+app.get("/", (req, res) => {
+  res.sendFile(path.join(__dirname, "public", "index.html"));
+});
+app.get("/coursevideos", (req, res) => {
+  res.sendFile(path.join(__dirname, "public", "coursevideos.html"));
 });
 
-// User Schema
-const userSchema = new mongoose.Schema(
-  {
-    email: {
-      type: String,
-      required: true,
-      unique: true,
-      lowercase: true,
-      trim: true,
-    },
-    password: String,
-    googleId: String,
-    secret: String,
-  },
-  {
-    timestamps: true,
+app.get("/t4w2SYb9CcQd3YW", (req, res) => {
+  res.sendFile(path.join(__dirname, "public", "t4w2SYb9CcQd3YW.html"));
+});
+app.post("/login", async (req, res) => {
+  const username = req.body.username;
+  const password = req.body.password;
+  try {
+    const result = await db.query(
+      "SELECT * FROM studentslogs WHERE username = $1",
+      [username]
+    );
+    if (result.rows.length > 0) {
+      const user = result.rows[0];
+      const storedPwd = user.password;
+      if (password === storedPwd) {
+        res.sendFile(path.join(__dirname, "public", "coursevideos.html"));
+      } else {
+        res.send("Incorrect password");
+      }
+    } else {
+      res.send("User not found");
+    }
+  } catch (err) {
+    console.log(err);
   }
-);
-
-userSchema.plugin(passportLocalMongoose);
-userSchema.plugin(findOrCreate);
-
-const User = mongoose.model("User", userSchema);
-
-// Passport Configuration
-passport.use(User.createStrategy());
-
-passport.serializeUser(function (user, cb) {
-  process.nextTick(function () {
-    return cb(null, {
-      id: user.id,
-      username: user.username,
-      picture: user.picture,
-    });
-  });
+});
+app.post("/register", async (req, res) => {
+  const username = req.body.username;
+  const password = req.body.password;
+  try {
+    const checkResult = await db.query(
+      "SELECT * FROM studentslogs WHERE username = $1",
+      [username]
+    );
+    if (checkResult.rows.length > 0) {
+      res.redirect("/?message=Email already exists. Please login.");
+    } else {
+      const result = await db.query(
+        "INSERT INTO studentslogs (username, password) VALUES ($1,$2)",
+        [username, password]
+      );
+      console.log(result);
+      res.sendFile(path.join(__dirname, "public", "coursevideos.html"));
+    }
+  } catch (err) {
+    console.log(err);
+  }
 });
 
-passport.deserializeUser(function (user, cb) {
-  process.nextTick(function () {
-    return cb(null, user);
+app.post("/logout", (req, res) => {
+  req.logout(function (err) {
+    if (err) {
+      console.log(err);
+    } else {
+      res.redirect("/");
+    }
   });
 });
 

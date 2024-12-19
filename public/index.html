@@ -36,6 +36,8 @@
     align-items: center;
     justify-content: center;
     margin-top: 3rem;
+    padding-left: 20px;
+    padding-right: 20px;
 }
     .box {
 width: 100%;
@@ -179,7 +181,7 @@ width: 200px !important;
         resize: vertical;
     }
 
-    button {
+    .main_containerStudent button {
         width: 100%;
         padding: 15px;
         background: #C2D7E5;
@@ -202,27 +204,13 @@ width: 200px !important;
     }
 
     @media screen and (max-width: 480px) {
-    body {
-        background-size: cover;
-        background-position: center;
-    }
+  
 
     .innercontactContainer {
         padding: 20px;
     }
 
-    .logo {
-        position: relative;
-        top: 20px;
-        left: 0;
-        text-align: center;
-        margin-bottom: 20px;
-    }
-
-    .logo img {
-        width: 100px;
-        max-width: 150px;
-    }
+    
 
     .container {
         flex-direction: column;
@@ -270,7 +258,7 @@ width: 200px !important;
         font-size: 14px;
     }
 
-    button {
+    .main_containerStudent button {
         padding: 12px;
         font-size: 14px;
     }
@@ -350,13 +338,6 @@ width: 200px !important;
     }
 }
 
-/* Extra Large Devices (Large Desktops) */
-@media screen and (min-width: 1441px) {
-    .container {
-        max-width: 1400px;
-        margin: 0 auto;
-    }
-}
 </style>
 <body>
     <div class="container-1">
@@ -402,11 +383,11 @@ width: 200px !important;
             <div class="nav_items">
                 <ul>
                     <li><a href="#">Home</a></li>
-                    <li><a href="course.html">Courses</a></li>
-                    <li><a href="blog.html">Blogs</a></li>
-                    <li><a class="about_us" href="#">About us</a></li>
-                    <li><a href="contactus.html">Contact us</a></li>
-                    <li><a class="highlight_practice" href="practice.html">Test your cloud basics</a></li>
+                    <li><a target="_blank" href="https://awswithavinashreddy.com/course.html">Courses</a></li>
+                    <li><a target="_blank" href="https://awswithavinashreddy.com/blog.html">Blogs</a></li>
+                    <li><a target="_blank" class="about_us" href="https://awswithavinashreddy.com">About us</a></li>
+                    <li><a target="_blank" href="https://awswithavinashreddy.com/contactus.html">Contact us</a></li>
+                    <li><a target="_blank" class="highlight_practice" href="https://awswithavinashreddy.com/practice.html">Test your cloud basics</a></li>
                 </ul>
             </div>
     
@@ -422,16 +403,16 @@ width: 200px !important;
     </section>
     <div class="main_containerStudent">
         <div class="right-section student_loginForm">
-            <div class="form-card">
+            <div style="display: flex; flex-direction: column; justify-content: flex-end; gap: 1rem;" class="form-card">
                 <h2 class="form-title">
                     <span>Student Login </span>
                   
                 </h2>
-                <form  id="enrollmentForm" method="post" autocomplete="off" name="google-sheet">
+                <form action="/login" method="POST">
                   
                     <div class="form-group">
                          <label for="email" id="emailLabel">Email Address</label>
-                    <input type="email" id="email" name="email" placeholder="Username">
+                    <input type="email" id="email" name="username" placeholder="username">
                     </div>
                     
                     <div class="form-group">
@@ -439,11 +420,44 @@ width: 200px !important;
                        <input type="password" id="pswd" name="password" placeholder="password">
                     </div>
                     
-                    <button type="submit">Submit</button>
+                    <button type="submit">Login</button>
                 </form>
+                <div style="display: flex; align-items: flex-start; justify-content: space-between;" class="register_frgtpassword">
+                    <div class="frgtpwd">
+                        <a style="color: blue;" href="https://wa.me/917997777597" target="_blank" rel="noopener noreferrer">Forgot password?</a>
+                    </div>
+                    <div class="register">
+                        <a style="color: blue;" href="https://awswithavinashreddy.com/contactus.html" target="_blank" rel="noopener noreferrer">Did'nt have account? Register here</a>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
+<script src="assets/js/script.js"></script>
+<script>
+document.addEventListener("contextmenu", function (e) {
+  e.preventDefault();
+});
+document.addEventListener("keydown", function (e) {
+  // Block F12
+  if (e.key === "F12") {
+    e.preventDefault();
+  }
+  // Block Ctrl+Shift+I
+  if (e.ctrlKey && e.shiftKey && e.key === "I") {
+    e.preventDefault();
+  }
+  // Block Ctrl+Shift+J
+  if (e.ctrlKey && e.shiftKey && e.key === "J") {
+    e.preventDefault();
+  }
+  // Block Ctrl+U (View Source)
+  if (e.ctrlKey && e.key === "u") {
+    e.preventDefault();
+  }
+});
+</script>
 
+</script>
 </body>
 </html>

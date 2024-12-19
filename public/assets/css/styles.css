@@ -457,8 +457,84 @@ nav {
         display: none;
     }
 }
-.student_loginForm{
-    
+
+.sm-btn{
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    padding: 8px 32px;
+    position: relative;
+    flex: 0 0 auto;
+    background-color:var(--colors-white-50);
+    border-radius: 24px;
+    cursor: pointer;
+    color: black;
+}
+.sm-btn .get-started{
+    font-size: var(--BODY-font-size);
+    font-family: var(--BODY-font-family);
+    font-style: var(--BODY-font-style);
+    line-height: var(--BODY-line-height);
+    letter-spacing: var(--BODY-letter-spacing);
+    font-weight: var(--BODY-font-weight);
+}
+.sm-btn:hover{
+    background-color: rgba(0, 40, 225, 1);
+    gap: 14px;
+    color: white;
+    transition: 0.35s ease-in;
+}
+.course-sectionDemo{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 30px;
+    background-color: white;
+    border-radius: 12px;
+ 
+    max-width: 1000px;
+    width: 100%;
+    overflow: hidden;
+    padding: 40px 60px 40px 60px;
+    align-items: flex-start;
+}
+
+.course-sectionDemo .video-container {
+    background-color: #f0f0f0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 240px;
+    border-radius: 12px;
+}
+
+.course-sectionDemo .video-container .placeholder {
+    text-align: center;
+    color: #888;
+}
+
+.course-sectionDemo .video-container .placeholder-icon {
+    width: 100px;
+    height: 100px;
+    fill: #999;
+    margin-bottom: 15px;
+}
+
+.course-sectionDemo .content-container {
    
-   
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.course-sectionDemo .content-header h2 {
+    font-size: 2.5rem;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+.course-sectionDemo .content-description {
+    color: #666;
+    line-height: 1.6;
+    margin-bottom: 30px;
 }
