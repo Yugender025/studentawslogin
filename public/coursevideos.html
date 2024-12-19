@@ -142,5 +142,17 @@ document.addEventListener("keydown", function (e) {
   }
 });
     </script>
+            <script>
+                function playVideo(container) {
+    const thumbnail = container.querySelector(".thumbnail");
+    const playButton = container.querySelector(".play-button");
+    const video = container.querySelector("video");
+
+    thumbnail.style.display = "none";
+    playButton.style.display = "none";
+    video.style.display = "block";
+    video.play();
+}
+    </script>
 </body>
 </html>

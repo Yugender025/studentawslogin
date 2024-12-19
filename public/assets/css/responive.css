@@ -1128,7 +1128,6 @@ html {
       margin-left: 1rem;
   }
 }
-
 /*-----------demo session responive-------*/
 /* Base Responsive Styles */
 @media screen and (max-width: 1200px) {
@@ -1151,6 +1150,7 @@ html {
 
   .course-sectionDemo .video-container {
       min-height: 200px;
+      
   }
 }
 
@@ -1174,6 +1174,7 @@ html {
 @media screen and (max-width: 480px) {
   .course-sectionDemo {
       padding: 15px;
+      width: 90%;
   }
 
   .course-sectionDemo .content-header h2 {
@@ -1185,8 +1186,8 @@ html {
   }
 
   .course-sectionDemo .video-container {
-     min-height: 200px;
-     max-width: 92%;
+     min-height: 160px;
+     max-width: 100%;
   }
 
   .course-sectionDemo .video-container .placeholder-icon {
@@ -1221,4 +1222,10 @@ html {
   .course-sectionDemo .video-container {
       min-height: 180px;
   }
+}
+@media screen and (max-width: 480px) {
+    .play-button {
+        width: 40px;
+        height: 40px;
+    }
 }

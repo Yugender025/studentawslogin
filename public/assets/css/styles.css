@@ -485,13 +485,12 @@ nav {
     color: white;
     transition: 0.35s ease-in;
 }
-.course-sectionDemo{
+.course-sectionDemo {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 30px;
     background-color: white;
     border-radius: 12px;
- 
     max-width: 1000px;
     width: 100%;
     overflow: hidden;
@@ -506,14 +505,49 @@ nav {
     align-items: center;
     min-height: 240px;
     border-radius: 12px;
+    position: relative;
+    cursor: pointer;
+    overflow: hidden;
 }
 
-.course-sectionDemo .video-container .placeholder {
+.video-container video,
+.video-container .thumbnail {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.video-container .play-button {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 80px;
+    height: 80px;
+    opacity: 0.9;
+    transition: opacity 0.3s;
+    z-index: 2;
+}
+
+.video-container .play-button:hover {
+    opacity: 1;
+}
+
+.video-container video {
+    display: none;
+    width: 100%;
+    height: 100%;
+    min-height: 240px;
+    object-fit: cover;
+}
+
+/* Placeholder styles from your CSS */
+.video-container .placeholder {
     text-align: center;
     color: #888;
 }
 
-.course-sectionDemo .video-container .placeholder-icon {
+.video-container .placeholder-icon {
     width: 100px;
     height: 100px;
     fill: #999;
@@ -538,3 +572,5 @@ nav {
     line-height: 1.6;
     margin-bottom: 30px;
 }
+
+

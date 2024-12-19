@@ -5,7 +5,8 @@ const classVideos = [
     ClassHeader: "aws class",
     SecondHeader: "Today class session",
     infoContainer: "hello class",
-    iframeVideo: "",
+    thubnailImg: "assets/images/Day0.jpg",
+    iframeVideo: "https://d1mfrlrzgvrt4d.cloudfront.net/demo/Day0.mp4",
     havedoubt: "",
   },
   {
@@ -14,7 +15,8 @@ const classVideos = [
     ClassHeader: "aws class",
     SecondHeader: "Today class session",
     infoContainer: "hello class",
-    iframeVideo: "",
+    thubnailImg: "assets/images/Day0.jpg",
+    iframeVideo: "https://d1mfrlrzgvrt4d.cloudfront.net/demo/Day0.mp4",
     havedoubt: "",
   },
 ];
@@ -23,15 +25,13 @@ function createDaysessions(dayVideos) {
   return `
     <div class="Course_contentdaily">
         <div class="course-sectionDemo">
-            <div class="video-container">
-               <a href="${dayVideos.iframeVideo}" target="_blank" rel="noopener noreferrer">
-                    <div class="placeholder">
-                        <svg class="placeholder-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 14V8l6 4-6 4z"/>
-                        </svg>
-                        <p>${dayVideos.ClassHeader}</p>
-                    </div>
-                </a> 
+             <div style="border-radius:12px;" class="video-container" onclick="playVideo(this)">
+                <img class="thumbnail" src="${dayVideos.thubnailImg}" alt="Video thumbnail">
+                    <svg class="play-button" viewBox="0 0 100 100">
+                        <circle cx="50" cy="50" r="48" fill="rgba(0,0,0,0.7)" />
+                        <path d="M35,25 L75,50 L35,75 Z" fill="white"/>
+                    </svg>
+               <video style="width:100%; height:100%; border-radius: 12px;" controlsList="nodownload" oncontextmenu="return false;" controls="" autoplay="" name="media"><source src="${dayVideos.iframeVideo}" type="video/mp4"></video> 
             </div>
     
             <div class="content-container">
