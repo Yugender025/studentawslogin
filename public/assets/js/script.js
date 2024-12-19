@@ -31,7 +31,7 @@ function createDaysessions(dayVideos) {
                         <circle cx="50" cy="50" r="48" fill="rgba(0,0,0,0.7)" />
                         <path d="M35,25 L75,50 L35,75 Z" fill="white"/>
                     </svg>
-               <video style="width:100%; height:100%; border-radius: 12px;" controlsList="nodownload" oncontextmenu="return false;" controls="" autoplay="" name="media"><source src="${dayVideos.iframeVideo}" type="video/mp4"></video> 
+               <video style="width:100%; height:100%; border-radius: 12px;" controlsList="nodownload" oncontextmenu="return false;" controls="" name="media"><source src="${dayVideos.iframeVideo}" type="video/mp4"></video> 
             </div>
     
             <div class="content-container">
